@@ -1,0 +1,62 @@
+'''Build a simple Command Line Interface (CLI) that 
+welcomes users and displays a menu with options to add, 
+view, delete tasks, or quit the application.'''
+
+tasks = []
+
+def add_task():
+    # User will input their task
+    task = input("Enter Task: ")
+    tasks.append(task)
+    print("Task added successfully.")
+
+def view_task():
+    # Users list of current tasks will print with a number assigned to each one
+    if len(tasks) == 0:
+        print("No tasks available.")
+    else:
+        print("List:")
+        for i, task in enumerate(tasks):
+            print(f"{i+1}. {task}")
+
+def delete_task():
+    # Deletes task by number chosen by user
+    if len(tasks) == 0:
+        print("No tasks available to delete.")
+        return
+    else:
+        print("Tasks:")
+        for i, task in enumerate(tasks):
+            print(f"{i+1}. {task}")
+        choice = int(input("Enter task number to delete:"))
+
+    if 0 < choice <= len(tasks):
+        del tasks[choice-1]
+        print("Task deleted successfully.")
+    else:
+        print("Invalid. Try again.")
+
+def main():
+    while True:
+        print("To-Do List Application")
+        print("1. Add a task")
+        print("2. View tasks")
+        print("3. Delete tasks")
+        print("4. Exit App")
+        
+        choice = int(input("Enter your choice:"))
+        if choice == 1:
+            add_task()
+        elif choice == 2:
+            view_task()
+        elif choice == 3:
+            delete_task()
+        elif choice == 4:
+            # Exits
+            print("Thank you.")
+            break
+        else:
+            print("Invalid. Try again.")
+
+if __name__ == "__main__":
+    main()
